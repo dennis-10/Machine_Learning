@@ -78,7 +78,7 @@ x_treinamento, x_teste, y_treinamento, y_teste = train_test_split(previsores,
                                                                   random_state=0)
 
 # Naive bayes
-naive_bayes = GaussianNB()
+naive_bayes = GaussianNB() # ~70%
 naive_bayes.fit(x_treinamento,y_treinamento)
 
 previsoes = naive_bayes.predict(x_teste)
@@ -87,11 +87,11 @@ confusao = confusion_matrix(y_teste,previsoes)
 print(confusao)
 taxa_acerto = accuracy_score(y_teste, previsoes)
 taxa_erro = 1 - taxa_acerto
-print(taxa_acerto) #70%
+print(taxa_acerto) 
 
 
 # Árvore de decisão
-arvore = DecisionTreeClassifier()
+arvore = DecisionTreeClassifier() # ~57%
 arvore.fit(x_treinamento,y_treinamento)
 
 previsoes = arvore.predict(x_teste)
@@ -107,7 +107,7 @@ export_graphviz(arvore, out_file = 'tree.dot') # http://www.webgraphviz.com/
 
 
 # Máquina de Vetor de Suporte
-svm = SVC()
+svm = SVC() # ~70%
 svm.fit(x_treinamento, y_treinamento)
 
 previsoes = svm.predict(x_teste)
@@ -118,7 +118,7 @@ taxa_acerto= accuracy_score(y_teste, previsoes)
 print(taxa_acerto)
 
 # Vizinho Mais Próximo
-knn = KNeighborsClassifier(n_neighbors= 3)
+knn = KNeighborsClassifier(n_neighbors= 3) # Acerto de ~60%
 knn.fit(x_treinamento,y_treinamento)
 
 previsoes = knn.predict(x_teste)
@@ -131,7 +131,7 @@ print(confusao)
 taxa_acerto = accuracy_score(y_teste, previsoes)
 print(taxa_acerto)
 
-floresta = RandomForestClassifier(n_estimators=100)
+floresta = RandomForestClassifier(n_estimators=100) # Próximo de ~70%
 floresta.fit(x_treinamento, y_treinamento)
 
 floresta.estimators_[1]
